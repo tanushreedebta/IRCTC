@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard - IRCTC</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+
+<div class="dashboard">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>IRCTC</h2>
+        <ul>
+            <li>🏠 Home</li>
+            <li>🎟 Book Ticket</li>
+            <li>📄 My Bookings</li>
+            <li>👤 Profile</li>
+            <li>🚪 Logout</li>
+        </ul>
+    </div>
+
+    <!-- Main Section -->
+    <div class="main">
+
+        <!-- Navbar -->
+        <div class="navbar">
+            <h3>Welcome, User</h3>
+        </div>
+
+        <!-- Dashboard Content -->
+        <div class="content">
+
+            <div class="card">
+                <h3>Total Bookings</h3>
+                <p id="totalBookings">0</p>
+            </div>
+
+            <div class="card">
+                <h3>Upcoming Trips</h3>
+                <p id="upcomingTrips">0</p>
+            </div>
+
+            <div class="card">
+                <h3>Cancelled Tickets</h3>
+                <p id="cancelledTickets">0</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+    // Simulated dynamic data (later from backend API)
+    const userData = {
+        totalBookings: 12,
+        upcomingTrips: 3,
+        cancelledTickets: 1
+    };
+
+    // Insert values dynamically
+    document.getElementById("totalBookings").innerText = userData.totalBookings;
+    document.getElementById("upcomingTrips").innerText = userData.upcomingTrips;
+    document.getElementById("cancelledTickets").innerText = userData.cancelledTickets;
+</script>
+
+</body>
+</html>

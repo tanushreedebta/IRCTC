@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sell Ticket - IRCTC Resale</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        /* Page Specific Styling */
+        .form-container {
+            width: 550px;
+            margin: 50px auto;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-container input,
+        .form-container select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+        }
+
+        .row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .row input {
+            width: 50%;
+        }
+
+        .form-container button {
+            width: 100%;
+            padding: 12px;
+            background-color: #00ffd5;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .form-container button:hover {
+            background-color: white;
+        }
+
+        .note {
+            font-size: 13px;
+            margin-top: 5px;
+            color: #ddd;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">IRCTC Resale</div>
+        <div class="nav-links">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="browse-tickets.html">Browse Tickets</a>
+            <a href="index.html">Logout</a>
+        </div>
+    </nav>
+
+    <!-- Sell Ticket Form -->
+    <div class="form-container">
+        <h2>Sell Your Ticket</h2>
+
+        <form id="sellForm" enctype="multipart/form-data">
+
+            <input type="text" name="pnr" placeholder="PNR Number (10 digits)" required>
+
+            <input type="text" name="trainNumber" placeholder="Train Number" required>
+
+            <input type="text" name="trainName" placeholder="Train Name" required>
+
+            <div class="row">
+                <input type="text" name="from" placeholder="From" required>
+                <input type="text" name="to" placeholder="To" required>
+            </div>
+
+            <input type="date" name="journeyDate" required>
+
+            <input type="text" name="seatNumber" placeholder="Seat Number" required>
+
+            <input type="text" name="passengerName" placeholder="Passenger Name" required>
+
+            <select name="gender" required>
+                <option value="">Select Gender</option>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Other</option>
+            </select>
+
+            <input type="number" id="price" name="price"
+                   placeholder="Original Ticket Price (₹)" required>
+
+            <div class="note">
+                Ticket resale must match original ticket price.
+            </div>
+
+            <label for="ticketImage" class="upload-label">
+    Upload Original IRCTC Ticket (Image or PDF) *
+</label>
+
+<input type="file" id="ticketImage" name="ticketImage"
+       accept="image/*,.pdf" required>
+
+<p class="note">
+Please upload the original ticket downloaded from IRCTC website/app.
+This is required for verification before resale.
+</p>
+
+            <button type="submit">List Ticket for Resale</button>
+
+        </form>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        document.getElementById("sellForm").addEventListener("submit", async function(e) {
+            e.preventDefault();
+
+            const priceField = document.getElementById("price");
+            const price = priceField.value;
+
+            if (price <= 0) {
+                alert("Price must be greater than 0");
+                return;
+            }
+
+            // Lock price field so user cannot change it
+            priceField.setAttribute("readonly", true);
+
+            const formData = new FormData(this);
+
+            try {
+                const response = await fetch("http://localhost:5000/sell-ticket", {
+                    method: "POST",
+                    body: formData
+                });
+
+                const data = await response.json();
+                alert(data.message);
+
+                window.location.href = "dashboard.html";
+
+            } catch (error) {
+                alert("Error submitting ticket.");
+                console.error(error);
+            }
+        });
+    </script>
+
+</body>
+</html>

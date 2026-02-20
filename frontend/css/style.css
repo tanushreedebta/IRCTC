@@ -1,0 +1,181 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #1e724b, #2a5298);
+    color: white;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.navbar h2 {
+    font-size: 28px;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin-left: 25px;
+    font-size: 18px;
+}
+
+.navbar a:hover {
+    color: #00ffd5;
+}
+
+/* Hero Section */
+.hero {
+    height: 85vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.hero h1 {
+    font-size: 50px;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+.hero button {
+    padding: 12px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 6px;
+    background-color: #00ffd5;
+    color: black;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.hero button:hover {
+    background-color: white;
+}
+.form-container {
+    width: 500px;
+    margin: 50px auto;
+    padding: 30px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+}
+
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-container input,
+.form-container select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: none;
+}
+
+.row {
+    display: flex;
+    gap: 10px;
+}
+
+.row input {
+    width: 50%;
+}
+
+.form-container button {
+    width: 100%;
+    padding: 12px;
+    background-color: #00ffd5;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.form-container button:hover {
+    background-color: white;
+}
+/* Sell Ticket Page Styling */
+
+.form-container {
+    width: 550px;
+    margin: 50px auto;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+}
+
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-container input,
+.form-container select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: none;
+}
+
+.row {
+    display: flex;
+    gap: 10px;
+}
+
+.row input {
+    width: 50%;
+}
+
+.form-container button {
+    width: 100%;
+    padding: 12px;
+    background-color: #00ffd5;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.form-container button:hover {
+    background-color: white;
+}
+
+.note {
+    font-size: 13px;
+    margin-top: 5px;
+    color: #ddd;
+}
+.upload-label {
+    display: block;
+    margin-top: 15px;
+    font-weight: 500;
+}
+
+.note {
+    font-size: 13px;
+    margin-top: 5px;
+    color: #ddd;
+}
