@@ -1,70 +1,149 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Dashboard - IRCTC</title>
-    <link rel="stylesheet" href="dashboard.css">
+    <title>IRCTC Resale Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(to right, #1e3c72, #2a5298);
+            color: white;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar h2 {
+            margin: 0;
+        }
+
+        .logout-btn {
+            padding: 8px 15px;
+            background: #ff4b5c;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .logout-btn:hover {
+            background: #ff1e38;
+        }
+
+        /* Main Container */
+        .container {
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .welcome-card {
+            background: white;
+            color: #333;
+            width: 400px;
+            margin: auto;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        .welcome-card h1 {
+            margin-bottom: 10px;
+            color: #2a5298;
+        }
+
+        .user-email {
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .action-buttons button, .action-buttons a {
+            padding: 10px 18px;
+            margin: 8px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .buy-btn {
+            background: #28a745;
+            color: white;
+        }
+
+        .sell-btn {
+            background: #ffc107;
+            color: black;
+        }
+
+        .buy-btn:hover {
+            background: #218838;
+        }
+
+        .sell-btn:hover {
+            background: #e0a800;
+        }
+    </style>
 </head>
 <body>
 
-<div class="dashboard">
-
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <h2>IRCTC</h2>
-        <ul>
-            <li>🏠 Home</li>
-            <li>🎟 Book Ticket</li>
-            <li>📄 My Bookings</li>
-            <li>👤 Profile</li>
-            <li>🚪 Logout</li>
-        </ul>
+    <!-- Navbar -->
+    <div class="navbar">
+        <h2>🚆 IRCTC Resale</h2>
+        <button class="logout-btn" onclick="logout()">Logout</button>
     </div>
 
-    <!-- Main Section -->
-    <div class="main">
+    <!-- Main Content -->
+    <div class="container">
+        <div class="welcome-card">
+            <h1>Welcome 👋</h1>
+            <p class="user-email" id="userEmail"></p>
 
-        <!-- Navbar -->
-        <div class="navbar">
-            <h3>Welcome, User</h3>
+            <div class="action-buttons">
+                <!-- Buy/Sell Buttons -->
+                <button class="buy-btn" onclick="goToBuy()">Buy Ticket</button>
+                <button class="sell-btn" onclick="goToSell()">Sell Ticket</button>
+            </div>
         </div>
-
-        <!-- Dashboard Content -->
-        <div class="content">
-
-            <div class="card">
-                <h3>Total Bookings</h3>
-                <p id="totalBookings">0</p>
-            </div>
-
-            <div class="card">
-                <h3>Upcoming Trips</h3>
-                <p id="upcomingTrips">0</p>
-            </div>
-
-            <div class="card">
-                <h3>Cancelled Tickets</h3>
-                <p id="cancelledTickets">0</p>
-            </div>
-
-        </div>
-
     </div>
 
-</div>
+    <script>
+        // Get email from localStorage
+        const email = localStorage.getItem("userEmail");
 
-<script>
-    // Simulated dynamic data (later from backend API)
-    const userData = {
-        totalBookings: 12,
-        upcomingTrips: 3,
-        cancelledTickets: 1
-    };
+        if (!email) {
+            window.location.href = "login.html";
+        } else {
+            document.getElementById("userEmail").innerText = "Logged in as: " + email;
+        }
 
-    // Insert values dynamically
-    document.getElementById("totalBookings").innerText = userData.totalBookings;
-    document.getElementById("upcomingTrips").innerText = userData.upcomingTrips;
-    document.getElementById("cancelledTickets").innerText = userData.cancelledTickets;
-</script>
+        // Logout function
+        function logout() {
+            localStorage.removeItem("userEmail");
+            window.location.href = "login.html";
+        }
+
+        // Navigate to Buy Ticket page
+        function goToBuy() {
+            window.location.href = "browse-tickets.html";
+        }
+
+        // Navigate to Sell Ticket page
+        function goToSell() {
+            window.location.href = "sell-ticket.html";
+        }
+    </script>
 
 </body>
 </html>

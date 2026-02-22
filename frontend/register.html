@@ -11,28 +11,30 @@
             <h2>Create Account</h2>
             <p>Fill in your details to register</p>
 
-            <form>
+            <form id="registerForm">
+
                 <div class="input-group">
-                    <input type="text" placeholder="Full Name" required>
+                    <input type="text" id="name" placeholder="Full Name" required>
                 </div>
 
                 <div class="input-group">
-                    <input type="email" placeholder="Email Address" required>
+                    <input type="email" id="email" placeholder="Email Address" required>
                 </div>
 
                 <div class="input-group">
-                    <input type="tel" placeholder="Phone Number" required>
+                    <input type="tel" id="phone" placeholder="Phone Number" required>
                 </div>
 
                 <div class="input-group">
-                    <input type="password" placeholder="Password" required>
+                    <input type="password" id="password" placeholder="Password" required>
                 </div>
 
                 <div class="input-group">
-                    <input type="password" placeholder="Confirm Password" required>
+                    <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
                 </div>
 
                 <button type="submit">Register</button>
+
             </form>
 
             <div class="extra-links">
@@ -40,6 +42,51 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.getElementById("registerForm").addEventListener("submit", async function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const phone = document.getElementById("phone").value;
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirmPassword").value;
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match!");
+                return;
+            }
+
+            try {
+                const response = await fetch("http://localhost:5000/register", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        name: name,
+                        email: email,
+                        phone: phone,
+                        password: password
+                    })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    alert("Registration Successful ✅");
+                    window.location.href = "login.html";
+                } else {
+                    alert(data);
+                }
+
+            } catch (error) {
+                console.error("Error:", error);
+                alert("Server error. Please try again.");
+            }
+        });
+    </script>
 
 </body>
 </html>
